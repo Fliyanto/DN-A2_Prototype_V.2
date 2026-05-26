@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- =========================================
+       Basic page setup
+       ========================================= -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>404: Self Not Found</title>
+
+    <!-- =========================================
+       Stylesheets
+       ========================================= -->
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- =========================================
+       Google Font
+       ========================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- =========================================
+       Main app wrapper
+       The data-stage changes quietly in JS as
+       the feed becomes more personalised.
+       ========================================= -->
+    <main id="app" class="app" data-stage="balanced">
+      <!-- =========================================
+         Opening / landing screen
+         Keeps the true project meaning hidden.
+         ========================================= -->
+      <section id="landingScreen" class="screen landing-screen is-active">
+        <div class="landing-bubble-field" aria-hidden="true">
+          <span class="decor-bubble decor-bubble-1"></span>
+          <span class="decor-bubble decor-bubble-2"></span>
+          <span class="decor-bubble decor-bubble-3"></span>
+          <span class="decor-bubble decor-bubble-4"></span>
+          <span class="decor-bubble decor-bubble-5"></span>
+        </div>
+
+        <div class="landing-content">
+          <p class="eyebrow">A softer way to browse</p>
+
+          <h1 class="landing-title">Let’s personalise your feed.</h1>
+
+          <p class="landing-description">
+            Pick a few interests and explore a bubbly little feed shaped around
+            what you click.
+          </p>
+
+          <button id="startButton" class="primary-button" type="button">
+            Start Personalising
+          </button>
+        </div>
+      </section>
+
+      <!-- =========================================
+         Interest setup screen
+         Category buttons are generated from data.js.
+         ========================================= -->
+      <section id="setupScreen" class="screen setup-screen" aria-hidden="true">
+        <div class="setup-panel">
+          <p class="eyebrow">Step 1</p>
+
+          <h2 class="section-title">Choose what you want to see.</h2>
+
+          <p class="section-description">
+            Your choices help shape the first version of your feed. You can
+            choose more than one.
+          </p>
+
+          <div
+            id="categoryChoices"
+            class="category-choice-grid"
+            aria-label="Interest category choices"
+          >
+            <!-- Category buttons are injected by main.js -->
+          </div>
+
+          <div class="setup-actions">
+            <button id="continueButton" class="primary-button" type="button">
+              Build My Feed
+            </button>
+
+            <p id="setupHint" class="setup-hint">
+              Choose at least one interest to continue.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================
+         Feed screen
+         The feed slowly narrows based on clicks.
+         No visible counter is shown to avoid
+         revealing the hidden progression.
+         ========================================= -->
+      <section id="feedScreen" class="screen feed-screen" aria-hidden="true">
+        <header class="feed-header">
+          <div>
+            <p class="eyebrow">For You</p>
+
+            <h2 class="feed-title">Your bubble feed</h2>
+          </div>
+        </header>
+
+        <section
+          id="bubbleFeed"
+          class="bubble-feed"
+          aria-label="Personalised content bubble feed"
+        >
+          <!-- Bubble posts are injected by main.js -->
+        </section>
+      </section>
+
+      <!-- =========================================
+         Post popup / expanded social post
+         Opens when users click a bubble.
+         The right side is display-only: fake
+         comments and engagement, no comment input.
+         ========================================= -->
+      <aside
+        id="postModal"
+        class="post-modal"
+        aria-hidden="true"
+        aria-label="Selected post"
+      >
+        <div id="postOverlay" class="post-overlay"></div>
+
+        <article
+          class="post-card"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="postTitle"
+        >
+          <button
+            id="closePostButton"
+            class="close-button"
+            type="button"
+            aria-label="Close post"
+          >
+            ×
+          </button>
+
+          <!-- Large visual side -->
+          <section class="post-preview-panel" aria-label="Post image preview">
+            <div class="post-image-wrap">
+              <img id="postImage" class="post-image" src="" alt="" />
+            </div>
+
+            <div class="post-preview-glow" aria-hidden="true"></div>
+          </section>
+
+          <!-- Social-media inspired info side -->
+          <section class="post-social-panel" aria-label="Post details">
+            <!-- Account header -->
+            <header class="post-account-header">
+              <div class="post-account-left">
+                <div id="postAvatar" class="post-avatar" aria-hidden="true">
+                  <span id="postAvatarInitial">F</span>
+                </div>
+
+                <div>
+                  <div class="post-account-name-row">
+                    <p id="postUsername" class="post-username">@bubblefeed</p>
+                    <span class="verified-dot" aria-label="Verified account"
+                      >✓</span
+                    >
+                  </div>
+
+                  <p class="post-account-subtitle">
+                    <span id="postCategory">Category</span>
+                    <span aria-hidden="true"> · </span>
+                    <span id="postTopic">Topic</span>
+                  </p>
+                </div>
+              </div>
+
+              <button
+                class="post-menu-button"
+                type="button"
+                aria-label="More post options"
+              >
+                •••
+              </button>
+            </header>
+
+            <!-- Caption -->
+            <div class="post-caption-block">
+              <h3 id="postTitle" class="post-title">Post title</h3>
+
+              <p class="post-caption-line">
+                <strong id="postCaptionUsername">@bubblefeed</strong>
+                <span id="postCaption"> Post caption appears here. </span>
+              </p>
+
+              <p id="postHashtags" class="post-hashtags">
+                #foryou #bubblefeed #personalised
+              </p>
+            </div>
+
+            <!-- Fake comments -->
+            <div class="post-comments-block">
+              <div class="post-comments-heading-row">
+                <p class="post-comments-heading">Comments</p>
+                <p id="postCommentCount" class="post-comment-count">0</p>
+              </div>
+
+              <div id="postCommentsList" class="post-comments-list">
+                <!-- Fake comments are injected by main.js -->
+              </div>
+            </div>
+
+            <!-- Engagement footer -->
+            <footer class="post-engagement-footer">
+              <div class="post-action-row" aria-label="Post engagement actions">
+                <button
+                  class="post-action-button"
+                  type="button"
+                  aria-label="Like post"
+                >
+                  ♡
+                </button>
+
+                <button
+                  class="post-action-button"
+                  type="button"
+                  aria-label="View comments"
+                >
+                  ◌
+                </button>
+
+                <button
+                  class="post-action-button"
+                  type="button"
+                  aria-label="Share post"
+                >
+                  ↗
+                </button>
+
+                <button
+                  class="post-action-button post-action-bookmark"
+                  type="button"
+                  aria-label="Bookmark post"
+                >
+                  ♢
+                </button>
+              </div>
+
+              <div class="post-stat-row" aria-label="Post statistics">
+                <p><strong id="postLikeCount">0</strong> likes</p>
+                <p><strong id="postShareCount">0</strong> shares</p>
+                <p><strong id="postSaveCount">0</strong> saves</p>
+              </div>
+            </footer>
+          </section>
+        </article>
+      </aside>
+
+      <!-- =========================================
+         Final ending screen
+         Revealed after the hidden click threshold.
+         ========================================= -->
+      <section
+        id="endingScreen"
+        class="screen ending-screen"
+        aria-hidden="true"
+      >
+        <div class="ending-glitch-field" aria-hidden="true">
+          <span class="glitch-line glitch-line-1"></span>
+          <span class="glitch-line glitch-line-2"></span>
+          <span class="glitch-line glitch-line-3"></span>
+        </div>
+
+        <div class="ending-content">
+          <p class="ending-code">ERROR 404</p>
+
+          <h2 class="ending-title" data-text="Self Not Found">
+            Self Not Found
+          </h2>
+
+          <p class="ending-description">
+            The feed kept learning what you clicked, until everything else faded
+            away. What felt personal slowly became repetitive.
+          </p>
+
+          <button id="restartButton" class="secondary-button" type="button">
+            Refresh Identity
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================
+       Audio assets
+       Triggered through JavaScript.
+       ========================================= -->
+    <audio
+      id="bubblePopAudio"
+      src="assets/audio/bubblePop.mp3"
+      preload="auto"
+    ></audio>
+
+    <!-- =========================================
+       JavaScript files
+       Keep this order exactly:
+       1. data.js
+       2. function.js
+       3. aesthetic.js
+       4. main.js
+       ========================================= -->
+    <script src="data.js"></script>
+    <script src="function.js"></script>
+    <script src="aesthetic.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

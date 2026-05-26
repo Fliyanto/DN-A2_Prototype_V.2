@@ -1,0 +1,101 @@
+/* ===================================
+   404: Self Not Found
+   reset.css
+   Clean base styling for consistency
+=================================== */
+
+/* Use predictable sizing across all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default spacing */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling for internal movement */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve text rendering */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Keep media responsive */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Make form elements inherit font styling */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove default button appearance */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Prevent long text from breaking layouts */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Remove list styling when needed */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Make links easier to style manually */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Better focus visibility for keyboard users */
+:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.75);
+  outline-offset: 4px;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
