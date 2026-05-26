@@ -50,8 +50,8 @@ const APP_CONFIG = {
 
 /* =========================================
    Content library
-   Only categories with real assets are active
-   for now: Food, Gaming, Sports
+   Active categories:
+   Food, Gaming, Sports, Music, Tech, Travel
    ========================================= */
 
 const CONTENT_LIBRARY = [
@@ -562,6 +562,525 @@ const CONTENT_LIBRARY = [
             image: "assets/images/sports/tennis/racketBall.avif",
             username: "@servicebox",
             caption: "Simple gear, endless obsession.",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "music",
+    label: "Music",
+    description:
+      "Aesthetic, performance-based, nostalgic, and lifestyle music content.",
+    topics: [
+      {
+        id: "album",
+        label: "Album",
+        posts: [
+          {
+            id: "album-collection",
+            title: "Album Collection",
+            image: "assets/images/music/album/albumCollection.jpeg",
+            username: "@sleevenotes",
+            caption: "Some albums look too good to hide on a shelf.",
+          },
+          {
+            id: "kpop-albums",
+            title: "K-Pop Albums",
+            image: "assets/images/music/album/kpopAlbums.jpg",
+            username: "@photocardpulls",
+            caption: "The packaging is half the experience.",
+          },
+          {
+            id: "retro-albums",
+            title: "Retro Albums",
+            image: "assets/images/music/album/retroAlbums.webp",
+            username: "@dustytracklist",
+            caption: "Old covers have a different kind of charm.",
+          },
+        ],
+      },
+      {
+        id: "concerts",
+        label: "Concerts",
+        posts: [
+          {
+            id: "coldplay",
+            title: "Coldplay Concert",
+            image: "assets/images/music/concerts/coldPlay.jpg",
+            username: "@stadiumglow",
+            caption: "The lights make the whole crowd feel unreal.",
+          },
+          {
+            id: "itzy-concert",
+            title: "ITZY Concert",
+            image: "assets/images/music/concerts/itzyConcert.jpg",
+            username: "@frontrowfeels",
+            caption: "Concert energy hits different when everyone sings along.",
+          },
+          {
+            id: "kiss-concert",
+            title: "KISS Concert",
+            image: "assets/images/music/concerts/kissConcert.webp",
+            username: "@loudnightout",
+            caption: "Big stage, big makeup, bigger drama.",
+          },
+        ],
+      },
+      {
+        id: "instruments",
+        label: "Instruments",
+        posts: [
+          {
+            id: "new-guitar",
+            title: "New Guitar",
+            image: "assets/images/music/instruments/newGuitar.jpg",
+            username: "@sixstringdiary",
+            caption:
+              "A fresh guitar always feels like a new personality unlocked.",
+          },
+          {
+            id: "tom-galore",
+            title: "Tom Galore",
+            image: "assets/images/music/instruments/tomGalore.jpg",
+            username: "@drumroomdaily",
+            caption: "Drum setups always look chaotic in the best way.",
+          },
+          {
+            id: "trying-to-sort-out-cabels",
+            title: "Cable Setup",
+            image: "assets/images/music/instruments/tryingToSortOutCabels.jpg",
+            username: "@signalchain",
+            caption: "The cable mess is part of the ritual.",
+          },
+        ],
+      },
+      {
+        id: "karaoke",
+        label: "Karaoke",
+        posts: [
+          {
+            id: "home-karaoke",
+            title: "Home Karaoke",
+            image: "assets/images/music/karaoke/homeKaraoke.jpg",
+            username: "@livingroomsessions",
+            caption: "Home karaoke turns everyone into a main vocalist.",
+          },
+          {
+            id: "karaoke-setup",
+            title: "Karaoke Setup",
+            image: "assets/images/music/karaoke/karaokeSetup.jpg",
+            username: "@micchecknight",
+            caption: "The setup decides how dramatic the night gets.",
+          },
+          {
+            id: "karaoke-night",
+            title: "Karaoke Night",
+            image: "assets/images/music/karaoke/kareokeNight.jpg",
+            username: "@offkeyhours",
+            caption: "Bad singing somehow makes the memory better.",
+          },
+        ],
+      },
+      {
+        id: "orchestra",
+        label: "Orchestra",
+        posts: [
+          {
+            id: "fun-night",
+            title: "Fun Night",
+            image: "assets/images/music/orchestra/funNight.jpeg",
+            username: "@grandhallglow",
+            caption:
+              "Orchestra nights feel fancy before the music even starts.",
+          },
+          {
+            id: "rehersal-orchestra",
+            title: "Orchestra Rehearsal",
+            image: "assets/images/music/orchestra/rehersalOrchestra.jpg",
+            username: "@soundcheckstrings",
+            caption: "Rehearsal has its own quiet kind of magic.",
+          },
+          {
+            id: "watching-orchestra",
+            title: "Watching Orchestra",
+            image: "assets/images/music/orchestra/watchingOrchestra.jpg",
+            username: "@balconyview",
+            caption:
+              "Sometimes the best seat is the one where everything feels huge.",
+          },
+        ],
+      },
+      {
+        id: "vinyl",
+        label: "Vinyl",
+        posts: [
+          {
+            id: "home-display",
+            title: "Home Display",
+            image: "assets/images/music/vinyl/homeDisplay.webp",
+            username: "@vinylcorner",
+            caption: "A good display makes music feel physical again.",
+          },
+          {
+            id: "home-display-2",
+            title: "Record Wall",
+            image: "assets/images/music/vinyl/homeDisplay2.webp",
+            username: "@shelfrotation",
+            caption: "The wall slowly becomes a playlist.",
+          },
+          {
+            id: "vinyl-store",
+            title: "Vinyl Store",
+            image: "assets/images/music/vinyl/vinylStore.webp",
+            username: "@cratefinds",
+            caption: "Digging through records is basically treasure hunting.",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "tech",
+    label: "Tech",
+    description:
+      "Clean setups, gadgets, robotics, and modern digital lifestyle content.",
+    topics: [
+      {
+        id: "cameras",
+        label: "Cameras",
+        posts: [
+          {
+            id: "home-photography-setup",
+            title: "Home Photography Setup",
+            image: "assets/images/tech/cameras/homePhotographySetUp.jpg",
+            username: "@framefromhome",
+            caption: "A tiny home setup can still look studio-ready.",
+          },
+          {
+            id: "loads-camera",
+            title: "Camera Gear",
+            image: "assets/images/tech/cameras/loadsCamera.jpg",
+            username: "@lenspile",
+            caption: "Too many cameras is not a real problem.",
+          },
+          {
+            id: "personal-setup",
+            title: "Personal Setup",
+            image: "assets/images/tech/cameras/personalSetup.webp",
+            username: "@dailycapture",
+            caption: "The best camera is the one you actually reach for.",
+          },
+        ],
+      },
+      {
+        id: "desk-setup",
+        label: "Desk Setup",
+        posts: [
+          {
+            id: "gaming-setup",
+            title: "Gaming Setup",
+            image: "assets/images/tech/deskSetup/gamingSetup.jpg",
+            username: "@setupscroll",
+            caption: "RGB makes every desk feel slightly more powerful.",
+          },
+          {
+            id: "green-setup",
+            title: "Green Setup",
+            image: "assets/images/tech/deskSetup/greenSetUp.avif",
+            username: "@desktherapy",
+            caption: "A clean setup can fully reset the mood.",
+          },
+          {
+            id: "minimalistic-setup",
+            title: "Minimalistic Setup",
+            image: "assets/images/tech/deskSetup/minimalisticSetUp.jpeg",
+            username: "@quietworkspace",
+            caption: "Less clutter, more pretending life is organised.",
+          },
+        ],
+      },
+      {
+        id: "gaming-gears",
+        label: "Gaming Gears",
+        posts: [
+          {
+            id: "console-setup",
+            title: "Console Setup",
+            image: "assets/images/tech/gamingGears/consoleSetUp.jpg",
+            username: "@loadoutcorner",
+            caption: "The console corner always feels like a comfort zone.",
+          },
+          {
+            id: "racing-rig",
+            title: "Racing Rig",
+            image: "assets/images/tech/gamingGears/racingRIg.jpg",
+            username: "@simlap",
+            caption: "This setup makes sitting still feel fast.",
+          },
+          {
+            id: "triple-monitor-setup",
+            title: "Triple Monitor Setup",
+            image: "assets/images/tech/gamingGears/tripleMonitorSetUp.webp",
+            username: "@wideviewclub",
+            caption: "Three screens and suddenly normal feels too small.",
+          },
+        ],
+      },
+      {
+        id: "retro-tech",
+        label: "Retro Tech",
+        posts: [
+          {
+            id: "nostalgic-memories",
+            title: "Nostalgic Memories",
+            image: "assets/images/tech/retroTech/nostalgicMemories.jpg",
+            username: "@pastbootup",
+            caption: "Old tech somehow feels warmer than new tech.",
+          },
+          {
+            id: "old-school",
+            title: "Old School",
+            image: "assets/images/tech/retroTech/oldSchool.jpg",
+            username: "@vintagevoltage",
+            caption: "Chunky buttons deserve more respect.",
+          },
+          {
+            id: "ps1",
+            title: "PS1",
+            image: "assets/images/tech/retroTech/ps1.jpg",
+            username: "@memorycardfull",
+            caption: "The startup sound lives rent-free forever.",
+          },
+        ],
+      },
+      {
+        id: "robots",
+        label: "Robots",
+        posts: [
+          {
+            id: "industrial-robotic-arms",
+            title: "Robotic Arms",
+            image: "assets/images/tech/robots/industrialRoboticArms.png",
+            username: "@futurefactory",
+            caption: "Industrial robots look graceful in a slightly scary way.",
+          },
+          {
+            id: "robot-clerk",
+            title: "Robot Clerk",
+            image: "assets/images/tech/robots/robotClerk.webp",
+            username: "@automatedhello",
+            caption: "A robot clerk feels cute until it remembers your order.",
+          },
+          {
+            id: "robot-exhibition",
+            title: "Robot Exhibition",
+            image: "assets/images/tech/robots/robotExhibition.jpg",
+            username: "@metalmeetup",
+            caption: "The future always looks shinier at exhibitions.",
+          },
+        ],
+      },
+      {
+        id: "smart-watches",
+        label: "Smart Watches",
+        posts: [
+          {
+            id: "apple-watch",
+            title: "Apple Watch",
+            image: "assets/images/tech/smartWatches/appleWatch.webp",
+            username: "@wristcheckdaily",
+            caption: "Tiny screen, weirdly large control over my routine.",
+          },
+          {
+            id: "garmin-watch",
+            title: "Garmin Watch",
+            image: "assets/images/tech/smartWatches/garminWatch.jpg",
+            username: "@trainingmode",
+            caption: "Fitness data becomes addictive way too quickly.",
+          },
+          {
+            id: "whoop-band",
+            title: "WHOOP Band",
+            image: "assets/images/tech/smartWatches/whoopBand.avif",
+            username: "@recoveryscore",
+            caption: "Nothing humbles you like a sleep score.",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "travel",
+    label: "Travel",
+    description:
+      "Photogenic locations, city moments, food trips, and destination content.",
+    topics: [
+      {
+        id: "airports",
+        label: "Airports",
+        posts: [
+          {
+            id: "changi-airport",
+            title: "Changi Airport",
+            image: "assets/images/travel/airports/changiAirport.jpg",
+            username: "@gatechanged",
+            caption: "Some airports feel like destinations by themselves.",
+          },
+          {
+            id: "hong-kong-airport",
+            title: "Hong Kong Airport",
+            image: "assets/images/travel/airports/hongkongAirport.jpg",
+            username: "@terminalstories",
+            caption: "Airport windows make every trip feel cinematic.",
+          },
+          {
+            id: "incheon-international-airport",
+            title: "Incheon Airport",
+            image:
+              "assets/images/travel/airports/incheonInternationalAirport.jpg",
+            username: "@boardingsoon",
+            caption: "The calm before the trip always starts here.",
+          },
+        ],
+      },
+      {
+        id: "beach-escapes",
+        label: "Beach Escapes",
+        posts: [
+          {
+            id: "raja-ampat-beaches",
+            title: "Raja Ampat",
+            image: "assets/images/travel/beachEscapes/rajaAmpatBeaches.jpg",
+            username: "@clearwaterdiary",
+            caption: "This is the kind of blue that feels edited but isn’t.",
+          },
+          {
+            id: "santorini-black-sand-beach",
+            title: "Santorini Beach",
+            image:
+              "assets/images/travel/beachEscapes/santoriniBlackSandBeach.webp",
+            username: "@islandglow",
+            caption: "Black sand beaches feel unreal in the best way.",
+          },
+          {
+            id: "seminyak-sunset-bali",
+            title: "Seminyak Sunset",
+            image: "assets/images/travel/beachEscapes/seminyakSunsetBali.jpg",
+            username: "@sunsetqueue",
+            caption: "Everyone stops pretending not to take photos at sunset.",
+          },
+        ],
+      },
+      {
+        id: "city-streets",
+        label: "City Streets",
+        posts: [
+          {
+            id: "city-view",
+            title: "City View",
+            image: "assets/images/travel/cityStreets/cityView.jpeg",
+            username: "@urbanframe",
+            caption: "A city view always makes life feel busier than it is.",
+          },
+          {
+            id: "new-york-city-vibes",
+            title: "New York City",
+            image: "assets/images/travel/cityStreets/newYorkCityVibes.jpg",
+            username: "@crosswalkstories",
+            caption: "New York makes even walking feel like a scene.",
+          },
+          {
+            id: "shibuya-crossing",
+            title: "Shibuya Crossing",
+            image: "assets/images/travel/cityStreets/shibuyaCrossing.jpg",
+            username: "@tokyoflow",
+            caption: "Organised chaos somehow looks beautiful here.",
+          },
+        ],
+      },
+      {
+        id: "food-travels",
+        label: "Food Travels",
+        posts: [
+          {
+            id: "borough-market",
+            title: "Borough Market",
+            image: "assets/images/travel/foodTravels/boroughMarket.webp",
+            username: "@passportplates",
+            caption: "Markets are basically travel highlights you can eat.",
+          },
+          {
+            id: "jalan-alor",
+            title: "Jalan Alor",
+            image: "assets/images/travel/foodTravels/jalanAlor.jpg",
+            username: "@nightmarketwalks",
+            caption:
+              "Street food at night has unmatched main character energy.",
+          },
+          {
+            id: "osaka-street-foods",
+            title: "Osaka Street Foods",
+            image: "assets/images/travel/foodTravels/osakaStreetFoods.jpg",
+            username: "@snackpassport",
+            caption: "Osaka really knows how to turn food into a memory.",
+          },
+        ],
+      },
+      {
+        id: "landmarks",
+        label: "Landmarks",
+        posts: [
+          {
+            id: "mount-rushmore",
+            title: "Mount Rushmore",
+            image: "assets/images/travel/landmarks/mountRushmore.avif",
+            username: "@postcardlogic",
+            caption: "Some landmarks feel familiar before you even visit.",
+          },
+          {
+            id: "parthenon",
+            title: "Parthenon",
+            image: "assets/images/travel/landmarks/parthenon.webp",
+            username: "@ancientangle",
+            caption: "Old stone, huge history, perfect golden-hour drama.",
+          },
+          {
+            id: "sydney-opera-house",
+            title: "Sydney Opera House",
+            image: "assets/images/travel/landmarks/sydneyOperaHouse.jpg",
+            username: "@harbourview",
+            caption: "Instantly recognisable for a reason.",
+          },
+        ],
+      },
+      {
+        id: "nature-views",
+        label: "Nature Views",
+        posts: [
+          {
+            id: "central-park-new-york",
+            title: "Central Park",
+            image: "assets/images/travel/natureViews/centralParkNewYork.jpg",
+            username: "@greenbreak",
+            caption: "A patch of calm in the middle of everything.",
+          },
+          {
+            id: "lake-kawaguchiko",
+            title: "Lake Kawaguchiko",
+            image: "assets/images/travel/natureViews/lakeKawaguchiko.avif",
+            username: "@mountainmirror",
+            caption: "Some views make everyone go quiet for a second.",
+          },
+          {
+            id: "lombok-indonesia",
+            title: "Lombok",
+            image: "assets/images/travel/natureViews/lombokIndonesia.webp",
+            username: "@islandstillness",
+            caption: "Soft skies and quiet views are a dangerous combination.",
           },
         ],
       },

@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     default: ["@bubblefeed", "@dailyglimpse", "@softscroll"],
   };
 
-  const baseComments = [
+  const commentPool = [
     {
       user: "@mira.scrolls",
       text: "This is exactly the kind of post I would stop for.",
@@ -77,35 +77,33 @@ document.addEventListener("DOMContentLoaded", () => {
       user: "@softclicker",
       text: "I keep getting more of these and honestly I’m not mad.",
     },
-  ];
-
-  const narrowedComments = [
     {
-      user: "@sameagainpls",
-      text: "Wait, my feed has been showing this kind of thing all day.",
+      user: "@feedfriend",
+      text: "Recommended keeps popping up on my page too.",
     },
     {
-      user: "@loopedinside",
-      text: "It feels personal, but also weirdly repetitive.",
+      user: "@savedbyaccident",
+      text: "I opened one post like this and now my whole feed gets it.",
+    },
+    {
+      user: "@quietlurker",
+      text: "Not sure why this feels so made for me.",
+    },
+    {
+      user: "@loopedagain",
+      text: "Wait, I swear I just saw something like this earlier.",
+    },
+    {
+      user: "@scrollhabit",
+      text: "The more I look, the more the app keeps giving me this.",
     },
     {
       user: "@curatedmood",
-      text: "The app really knows what you like now.",
-    },
-  ];
-
-  const lateStageComments = [
-    {
-      user: "@onlythisnow",
-      text: "Is anyone else seeing the same topic again and again?",
+      text: "This feels personal in a weirdly accurate way.",
     },
     {
-      user: "@feedmirror",
-      text: "It’s like the feed is getting smaller every time I click.",
-    },
-    {
-      user: "@almostme",
-      text: "This feels less like discovery and more like being boxed in.",
+      user: "@almostfamiliar",
+      text: "I can’t tell if I found this or if it found me.",
     },
   ];
 
@@ -221,29 +219,32 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  function getCommentSet() {
-    if (state.clickCount >= 13) {
-      return lateStageComments;
-    }
+  function createSeedFromText(value) {
+    return safeText(value, "bubble")
+      .split("")
+      .reduce((seed, character) => {
+        return seed + character.charCodeAt(0);
+      }, 0);
+  }
 
-    if (state.clickCount >= 8) {
-      return narrowedComments;
-    }
+  function getRandomisedComments(post, amount = 4) {
+    const seed =
+      createSeedFromText(
+        `${post?.id}-${getPostTitle(post)}-${state.clickCount}`,
+      ) + state.clickHistory.length;
 
-    return baseComments;
+    const shuffledComments = [...commentPool].sort((a, b) => {
+      const aSeed = createSeedFromText(a.user + a.text) + seed;
+      const bSeed = createSeedFromText(b.user + b.text) + seed;
+
+      return (aSeed % 17) - (bSeed % 17);
+    });
+
+    return shuffledComments.slice(0, amount);
   }
 
   function buildComments(post) {
-    const category = titleCase(getPostCategoryId(post));
-    const topic = titleCase(getPostTopic(post));
-    const selectedSet = getCommentSet();
-
-    const specificComment = {
-      user: "@feedfriend",
-      text: `${topic} keeps popping up on my page too. The ${category} side of my feed is locked in.`,
-    };
-
-    return [specificComment, ...selectedSet];
+    return getRandomisedComments(post, 4);
   }
 
   /* =========================================
@@ -343,8 +344,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Rebuild the feed after each click so the page feels like
-    // it is quietly learning from the user's behaviour.
     window.setTimeout(() => {
       refreshFeed();
     }, 220);
