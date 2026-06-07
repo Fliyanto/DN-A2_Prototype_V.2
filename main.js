@@ -8,12 +8,21 @@ document.addEventListener("DOMContentLoaded", () => {
      DOM references
      ========================================= */
 
+  const app = getElement("app");
+
   const startButton = getElement("startButton");
   const continueButton = getElement("continueButton");
   const restartButton = getElement("restartButton");
+  const exploreButton = getElement("exploreButton");
+  const restartButtonFromExplore = getElement("restartButtonFromExplore");
 
   const categoryChoices = getElement("categoryChoices");
   const bubbleFeed = getElement("bubbleFeed");
+
+  const exploreScreen = getElement("exploreScreen");
+  const exploreTrack = getElement("exploreTrack");
+  const exploreProgressLabel = getElement("exploreProgressLabel");
+  const exploreProgressFill = getElement("exploreProgressFill");
 
   const postModal = getElement("postModal");
   const closePostButton = getElement("closePostButton");
@@ -44,14 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
     clickCount: 0,
     clickHistory: [],
     currentFeedPosts: [],
+    exploreChapterIndex: 0,
+    isExploreScrolling: false,
   };
 
   const totalClicksToEnding = window.APP_CONFIG?.totalClicksToEnding || 15;
 
   /* =========================================
      Social post helper data
-     These make the popup feel more alive without
-     revealing the hidden 15-click structure too early.
      ========================================= */
 
   const accountNames = {
@@ -294,6 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     applyBubbleAesthetic(bubbleFeed);
+    applyLateStageFeedPressure();
   }
 
   function enterFeed() {
@@ -305,11 +315,34 @@ document.addEventListener("DOMContentLoaded", () => {
     updateStageDisplay(state.clickCount);
     applyStageAesthetic(state.clickCount);
     updateAtmosphereVariables(state.clickCount);
+    applyLateStageFeedPressure();
 
     refreshFeed();
     resetScrollPosition();
 
     showScreen("feedScreen");
+  }
+
+  /* =========================================
+     Hidden progression / subtle breakdown
+     ========================================= */
+
+  function applyLateStageFeedPressure() {
+    if (!app) return;
+
+    app.classList.remove(
+      "stage-pressure-soft",
+      "stage-pressure-medium",
+      "stage-pressure-heavy",
+    );
+
+    if (state.clickCount >= 13) {
+      app.classList.add("stage-pressure-heavy");
+    } else if (state.clickCount >= 10) {
+      app.classList.add("stage-pressure-medium");
+    } else if (state.clickCount >= 6) {
+      app.classList.add("stage-pressure-soft");
+    }
   }
 
   /* =========================================
@@ -332,11 +365,13 @@ document.addEventListener("DOMContentLoaded", () => {
     updateStageDisplay(state.clickCount);
     applyStageAesthetic(state.clickCount);
     updateAtmosphereVariables(state.clickCount);
+    applyLateStageFeedPressure();
 
     openPostModal(post);
 
     if (state.clickCount >= totalClicksToEnding) {
       window.setTimeout(() => {
+        closePostModal();
         randomiseEndingGlitch();
         showEndingScreen();
       }, 650);
@@ -468,6 +503,132 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================================
+     Explore screen / chapter-by-chapter scrolling
+     ========================================= */
+
+  function getExploreChapters() {
+    if (!exploreTrack) return [];
+
+    return Array.from(exploreTrack.querySelectorAll(".explore-chapter"));
+  }
+
+  function updateExploreProgress() {
+    const chapters = getExploreChapters();
+    const totalChapters = chapters.length || 1;
+    const currentNumber = state.exploreChapterIndex + 1;
+    const progressPercent = (currentNumber / totalChapters) * 100;
+
+    if (exploreProgressLabel) {
+      exploreProgressLabel.textContent = `${String(currentNumber).padStart(
+        2,
+        "0",
+      )} / ${String(totalChapters).padStart(2, "0")}`;
+    }
+
+    if (exploreProgressFill) {
+      exploreProgressFill.style.width = `${progressPercent}%`;
+    }
+  }
+
+  function goToExploreChapter(index) {
+    const chapters = getExploreChapters();
+
+    if (!exploreTrack || !chapters.length) return;
+
+    const maxIndex = chapters.length - 1;
+    const nextIndex = Math.max(0, Math.min(index, maxIndex));
+    const targetChapter = chapters[nextIndex];
+
+    state.exploreChapterIndex = nextIndex;
+    updateExploreProgress();
+
+    targetChapter.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  }
+
+  function openExploreScreen() {
+    closePostModal();
+
+    state.exploreChapterIndex = 0;
+    showScreen("exploreScreen");
+
+    window.setTimeout(() => {
+      goToExploreChapter(0);
+    }, 60);
+  }
+
+  function handleExploreWheel(event) {
+    const isExploreActive =
+      exploreScreen && exploreScreen.classList.contains("is-active");
+
+    if (!isExploreActive) return;
+
+    event.preventDefault();
+
+    if (state.isExploreScrolling) return;
+
+    const scrollDirection = event.deltaY > 0 || event.deltaX > 0 ? 1 : -1;
+    const chapters = getExploreChapters();
+    const nextIndex = state.exploreChapterIndex + scrollDirection;
+
+    if (nextIndex < 0 || nextIndex >= chapters.length) return;
+
+    state.isExploreScrolling = true;
+    goToExploreChapter(nextIndex);
+
+    window.setTimeout(() => {
+      state.isExploreScrolling = false;
+    }, 760);
+  }
+
+  function handleExploreKeydown(event) {
+    const isExploreActive =
+      exploreScreen && exploreScreen.classList.contains("is-active");
+
+    if (!isExploreActive) return;
+
+    if (
+      event.key === "ArrowRight" ||
+      event.key === "ArrowDown" ||
+      event.key === "PageDown"
+    ) {
+      event.preventDefault();
+      goToExploreChapter(state.exploreChapterIndex + 1);
+    }
+
+    if (
+      event.key === "ArrowLeft" ||
+      event.key === "ArrowUp" ||
+      event.key === "PageUp"
+    ) {
+      event.preventDefault();
+      goToExploreChapter(state.exploreChapterIndex - 1);
+    }
+  }
+
+  function setupExploreControls() {
+    if (exploreButton) {
+      exploreButton.addEventListener("click", openExploreScreen);
+    }
+
+    if (restartButtonFromExplore) {
+      restartButtonFromExplore.addEventListener("click", restartExperience);
+    }
+
+    if (exploreScreen) {
+      exploreScreen.addEventListener("wheel", handleExploreWheel, {
+        passive: false,
+      });
+    }
+
+    document.addEventListener("keydown", handleExploreKeydown);
+    updateExploreProgress();
+  }
+
+  /* =========================================
      Screen controls
      ========================================= */
 
@@ -492,12 +653,20 @@ document.addEventListener("DOMContentLoaded", () => {
     state.clickCount = 0;
     state.clickHistory = [];
     state.currentFeedPosts = [];
+    state.exploreChapterIndex = 0;
+    state.isExploreScrolling = false;
 
     closePostModal();
+
+    if (exploreTrack) {
+      exploreTrack.scrollLeft = 0;
+    }
 
     updateStageDisplay(state.clickCount);
     applyStageAesthetic(state.clickCount);
     updateAtmosphereVariables(state.clickCount);
+    applyLateStageFeedPressure();
+    updateExploreProgress();
 
     setupCategoryChoices();
     resetScrollPosition();
@@ -538,11 +707,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupCategoryChoices();
     setupScreenControls();
+    setupExploreControls();
     setupModalControls();
 
     updateStageDisplay(state.clickCount);
     applyStageAesthetic(state.clickCount);
     updateAtmosphereVariables(state.clickCount);
+    applyLateStageFeedPressure();
 
     showScreen("landingScreen");
   }

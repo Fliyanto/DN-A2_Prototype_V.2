@@ -176,9 +176,9 @@
                 <div>
                   <div class="post-account-name-row">
                     <p id="postUsername" class="post-username">@bubblefeed</p>
-                    <span class="verified-dot" aria-label="Verified account"
-                      >✓</span
-                    >
+                    <span class="verified-dot" aria-label="Verified account">
+                      ✓
+                    </span>
                   </div>
 
                   <p class="post-account-subtitle">
@@ -297,9 +297,198 @@
             away. What felt personal slowly became repetitive.
           </p>
 
-          <button id="restartButton" class="secondary-button" type="button">
-            Refresh Identity
+          <button id="exploreButton" class="secondary-button" type="button">
+            Explore What Happened
           </button>
+        </div>
+      </section>
+
+      <!-- =========================================
+         Explore / explanation screen
+         Full-page sideways chapter experience.
+         One scroll moves to the next chapter.
+         ========================================= -->
+      <section
+        id="exploreScreen"
+        class="screen explore-screen"
+        aria-hidden="true"
+      >
+        <div class="explore-background-noise" aria-hidden="true"></div>
+
+        <header class="explore-header">
+          <div>
+            <p class="eyebrow">System Memory</p>
+            <h2 class="explore-title">Unpacking the Feed</h2>
+          </div>
+
+          <button id="restartButton" class="restart-link-button" type="button">
+            Restart Experience
+          </button>
+        </header>
+
+        <div
+          id="exploreTrack"
+          class="explore-track"
+          aria-label="Sideways explanation chapters"
+        >
+          <!-- Chapter 1 -->
+          <article class="explore-chapter" data-chapter="01">
+            <div class="chapter-inner">
+              <p class="chapter-number">01 / 04</p>
+              <p class="chapter-label">What happened?</p>
+
+              <h3 class="chapter-title" data-text="The feed was never neutral.">
+                The feed was never neutral.
+              </h3>
+
+              <p class="chapter-text">
+                This website is titled <strong>404: Self Not Found</strong>, but
+                it is masked under the friendlier identity of
+                <strong>Pop Scroll</strong>. At first, it presents itself as a
+                soft, colourful, and playful browsing experience.
+              </p>
+
+              <p class="chapter-text">
+                The hidden purpose is to make users experience how a
+                personalised feed can slowly narrow their world. What begins as
+                choice turns into repetition, and what feels harmless slowly
+                becomes uncomfortable.
+              </p>
+            </div>
+
+            <div
+              class="chapter-visual chapter-visual-bubbles"
+              aria-hidden="true"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </article>
+
+          <!-- Chapter 2 -->
+          <article class="explore-chapter" data-chapter="02">
+            <div class="chapter-inner">
+              <p class="chapter-number">02 / 04</p>
+              <p class="chapter-label">How did the interaction work?</p>
+
+              <h3
+                class="chapter-title"
+                data-text="Every click became a signal."
+              >
+                Every click became a signal.
+              </h3>
+
+              <p class="chapter-text">
+                As users click through the bubble feed, the website quietly pays
+                attention to which categories they choose most often. The more a
+                category is clicked, the more that type of content starts to
+                appear.
+              </p>
+
+              <p class="chapter-text">
+                The interaction does not need to explain itself straight away.
+                Instead, it lets the narrowing happen gradually. Other interests
+                begin to fade, the feed becomes darker, and the same kinds of
+                posts return again and again.
+              </p>
+            </div>
+
+            <div class="chapter-system-lines" aria-hidden="true">
+              <span>click detected</span>
+              <span>interest weight increased</span>
+              <span>feed rebuilt</span>
+              <span>variety reduced</span>
+            </div>
+          </article>
+
+          <!-- Chapter 3 -->
+          <article class="explore-chapter" data-chapter="03">
+            <div class="chapter-inner">
+              <p class="chapter-number">03 / 04</p>
+              <p class="chapter-label">Echo chamber</p>
+
+              <h3
+                class="chapter-title"
+                data-text="The loop starts to feel normal."
+              >
+                The loop starts to feel normal.
+              </h3>
+
+              <p class="chapter-text">
+                This project is based on my personal experience of being caught
+                inside an <strong>echo chamber</strong>. Online feeds often make
+                repeated content feel natural because they keep showing us
+                versions of what we have already clicked, liked, watched, or
+                paused on.
+              </p>
+
+              <p class="chapter-text">
+                The problem is not that the feed is completely wrong. The
+                problem is that it can become too confident. It starts treating
+                repeated behaviour as identity, even though a person is more
+                complicated than what they click.
+              </p>
+            </div>
+
+            <div class="chapter-echo-text" aria-hidden="true">
+              <span>recommended</span>
+              <span>recommended</span>
+              <span>recommended</span>
+              <span>recommended</span>
+            </div>
+          </article>
+
+          <!-- Chapter 4 -->
+          <article class="explore-chapter" data-chapter="04">
+            <div class="chapter-inner">
+              <p class="chapter-number">04 / 04</p>
+              <p class="chapter-label">Takeaway message</p>
+
+              <h3 class="chapter-title" data-text="Self Not Found">
+                Self Not Found
+              </h3>
+
+              <p class="chapter-text">
+                The final error does not mean the user has no identity. It means
+                the system has reduced them into a pattern it can repeat. The
+                feed no longer sees the full person, only the version of them
+                created through clicks.
+              </p>
+
+              <p class="chapter-text">
+                <strong>404: Self Not Found</strong> asks users to question the
+                comfort of personalisation. A feed can feel like it understands
+                us, but it may only be reflecting a smaller, flatter version of
+                who we are.
+              </p>
+
+              <button
+                id="restartButtonFromExplore"
+                class="primary-button"
+                type="button"
+              >
+                Restart Experience
+              </button>
+            </div>
+
+            <div class="chapter-final-message" aria-hidden="true">
+              <span>not everything you click</span>
+              <span>is everything you are</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="explore-progress" aria-hidden="true">
+          <span id="exploreProgressLabel">01 / 04</span>
+          <div class="explore-progress-line">
+            <span id="exploreProgressFill"></span>
+          </div>
+        </div>
+
+        <div class="explore-scroll-hint" aria-hidden="true">
+          <span>Scroll to continue</span>
+          <span>→</span>
         </div>
       </section>
     </main>
